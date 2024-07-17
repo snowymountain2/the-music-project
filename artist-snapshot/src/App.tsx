@@ -1,8 +1,8 @@
 import "./App.css";
-import { SearchBar } from "./Header/SearchBar";
+import { HomepageSection } from "./Homepage/HomepageSection";
 
 function App() {
-  return <SearchBar />;
+  return <HomepageSection />;
 }
 
 export default App;
