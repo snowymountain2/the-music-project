@@ -9,3 +9,22 @@
 .search-div {
   padding-left: 30vw;
 }
+
+.top-songs {
+  padding: 0px 50px;
+}
+
+.top-videos {
+  width: 800px !important;
+}
+
+.top-video-items {
+  display: flex;
+  flex-wrap: wrap;
+}
+.placeholder {
+  width: 100px;
+  height: 80px;
+  margin: 5px;
+  background-color: red;
+}
