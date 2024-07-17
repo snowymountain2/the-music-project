@@ -5,3 +5,7 @@
 .main-container {
   display: flex;
 }
+
+.search-div {
+  padding-left: 30vw;
+}
