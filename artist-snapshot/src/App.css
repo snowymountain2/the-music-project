@@ -4,27 +4,45 @@
 
 .main-container {
   display: flex;
+  margin-left: 8%;
+  margin-right: 8%;
 }
 
 .search-div {
   padding-left: 30vw;
 }
-
+.top-videos {
+  width: 500px !important;
+  flex-shrink: 0;
+}
 .top-songs {
   padding: 0px 50px;
 }
 
-.top-videos {
-  width: 800px !important;
-}
-
-.top-video-items {
+.top-videos-items {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: row;
 }
 .placeholder {
+  width: 200px;
+  height: 150px;
+  margin: 5px;
+  background-color: red;
+}
+
+.trending-topics {
+  /* width: 500px !important; */
+  /* flex-shrink: 0; */
+}
+
+.album-container {
+  display: flex;
+}
+
+.albums {
   width: 100px;
-  height: 80px;
+  height: 100px;
   margin: 5px;
   background-color: red;
 }
