@@ -1,8 +1,19 @@
+import React from "react";
+import { useEffect, useState } from "react";
+
 export function HomepageSection() {
+  const [backend, setBackend] = useState([{}]);
+
+  useEffect(() => {
+    fetch("http://localhost:8080/example")
+      .then((response) => response.json())
+      .then((data) => console.log(data));
+  }, []);
+
   return (
     <>
       <div className="header">
-        <div className="logo">TheArtistSnapshot</div>
+        <div className="logo"></div>
         <div className="search-div">
           <form action="" method="POST" className="form">
             <label htmlFor="artist-search"></label>
