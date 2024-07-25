@@ -2,12 +2,12 @@ import React from "react";
 import { useEffect, useState } from "react";
 
 export function HomepageSection() {
-  const [backend, setBackend] = useState([{}]);
+  const [backend, setBackend] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:8080/example")
       .then((response) => response.json())
-      .then((data) => console.log(data));
+      .then((data) => console.log(data[0]));
   }, []);
 
   return (
