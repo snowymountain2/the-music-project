@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { TopVideos } from "./TopVideos";
 
 export function HomepageSection() {
   const [popularTopics, setPopularTopics] = useState([{}]);
@@ -55,12 +56,7 @@ export function HomepageSection() {
           <p>
             <h2> Top Videos </h2>
             <div className="top-videos-items">
-              <div className="placeholder"></div>
-              <div className="placeholder"></div>
-              <div className="placeholder"></div>
-              <div className="placeholder"></div>
-              <div className="placeholder"></div>
-              <div className="placeholder"></div>
+              <TopVideos YouTubeVideoIDs={popularTopics} />
             </div>
           </p>
         </div>
@@ -78,11 +74,6 @@ export function HomepageSection() {
                         </li>
                       );
                     })}
-                {/* {[...Array(10)].map((element, index) => {
-                  return (
-                    <li key={index}>{popularTopics.popularTopics[index]}</li>
-                  );
-                })} */}
               </ol>
             </p>
           </div>

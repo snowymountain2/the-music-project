@@ -39,35 +39,47 @@ async function retrievePopularSongs() {
   return popularSongsData;
 }
 
-// async function retrievePopularSongs() {
-//   puppeteer.use(StealthPlugin());
-//   const browser = await puppeteer.launch();
-//   const page = await browser.newPage();
-//   await page.setDefaultNavigationTimeout(0);
-//   await page.goto(
-//     "https://music.apple.com/us/playlist/top-100-usa/pl.606afcbb70264d2eb2b51d8dbcfa6a12"
-//   );
+async function retrievePopularVideos() {
+  puppeteer.use(StealthPlugin());
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  await page.setDefaultNavigationTimeout(0);
+  await page.goto("https://www.youtube.com/feed/trending?bp=6gQJRkVleHBsb3Jl");
 
-//   const popularSongsData = await page.evaluate(() =>
-//     Array.from(
-//       document.querySelectorAll(".songs-list-row__song-name"),
-//       (e) => e.innerText
-//     )
-//   );
-//   await browser.close();
-//   return popularSongsData;
-// }
+  const popularVideoData = await page.evaluate(() =>
+    Array.from(document.querySelectorAll("h3"), (e) => e.innerHTML)
+  );
+
+  // extracts only youtube videos that contain music video in them from trending list of vids that contain a wide assortment of stuff
+  const listFilteredToMusicVideos = popularVideoData.filter((e) =>
+    e.includes("Music Video")
+  );
+
+  // extracts the youtube vid id from string of each videos html
+  const getMusicVideoYouTubeIds = listFilteredToMusicVideos.map((e) => {
+    const ex = e.slice(
+      e.indexOf("?v=") + 3,
+      e.indexOf(">", e.indexOf("?v=")) - 1
+    );
+    return ex;
+  });
+
+  await browser.close();
+  return getMusicVideoYouTubeIds;
+}
 
 app.use(async (req, res) => {
   const popularTopicsDataFromScraper = await retrievePopularTopics();
   const popularSongsDataFromScraper = await retrievePopularSongs();
+  const popularVideosFromScraper = await retrievePopularVideos();
   const scrapedData = [
     {
       popularTopics: [...popularTopicsDataFromScraper],
       popularSongsData: [...popularSongsDataFromScraper],
+      popularVideosData: [...popularVideosFromScraper],
     },
   ];
-  console.log(scrapedData);
+  // console.log(scrapedData[0].popularVideosData);
   res.send(scrapedData);
 });
 
