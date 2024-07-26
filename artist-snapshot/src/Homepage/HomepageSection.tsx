@@ -2,12 +2,18 @@ import React from "react";
 import { useEffect, useState } from "react";
 
 export function HomepageSection() {
-  const [backend, setBackend] = useState([]);
+  const [popularTopics, setPopularTopics] = useState([{}]);
 
   useEffect(() => {
-    fetch("http://localhost:8080/example")
-      .then((response) => response.json())
-      .then((data) => console.log(data[0]));
+    async function getData() {
+      let response = await fetch("http://localhost:8080/example");
+      let datas = await response.json();
+      setPopularTopics(datas);
+    }
+    console.log("befre", popularTopics.length);
+
+    getData();
+    console.log("after", popularTopics.length);
   }, []);
 
   return (
@@ -33,16 +39,15 @@ export function HomepageSection() {
           <p>
             <h2>Top Songs</h2>
             <ol>
-              <li>asdfsafasdfsf</li>
-              <li>asdfsafasdfsf</li>
-              <li>asdfsafasdfsf</li>
-              <li>asdfsafasdfsf</li>
-              <li>asdfsafasdfsf</li>
-              <li>asdfsafasdfsf</li>
-              <li>asdfsafasdfsf</li>
-              <li>asdfsafasdfsf</li>
-              <li>asdfsafasdfsf</li>
-              <li>asdfsafasdfsf</li>
+              {popularTopics[0].popularSongsData === undefined
+                ? "<li>1</li>"
+                : [...Array(10)].map((e, index) => {
+                    return (
+                      <li key={index}>
+                        {popularTopics[0].popularSongsData[index]}
+                      </li>
+                    );
+                  })}
             </ol>
           </p>
         </div>
@@ -63,18 +68,22 @@ export function HomepageSection() {
           <div className="trending-topics">
             <h2>Trending Music Topics</h2>
             <p>
-              <ul>
-                <li>sdfasdffddsfddfsddfsfdfdssdf</li>
-                <li>sdfasdffddsfddfsddfsfdfdssdf</li>
-                <li>sdfasdffddsfddfsddfsfdfdssdf</li>
-                <li>sdfasdffddsfddfsddfsfdfdssdf</li>
-                <li>sdfasdffddsfddfsddfsfdfdssdf</li>
-                <li>sdfasdffddsfddfsddfsfdfdssdf</li>
-                <li>sdfasdffddsfddfsddfsfdfdssdf</li>
-                <li>sdfasdffddsfddfsddfsfdfdssdf</li>
-                <li>sdfasdffddsfddfsddfsfdfdssdf</li>
-                <li>sdfasdffddsfddfsddfsfdfdssdf</li>
-              </ul>
+              <ol>
+                {popularTopics[0].popularTopics === undefined
+                  ? "<li>1</li>"
+                  : [...Array(10)].map((e, index) => {
+                      return (
+                        <li key={index}>
+                          {popularTopics[0].popularTopics[index]}
+                        </li>
+                      );
+                    })}
+                {/* {[...Array(10)].map((element, index) => {
+                  return (
+                    <li key={index}>{popularTopics.popularTopics[index]}</li>
+                  );
+                })} */}
+              </ol>
             </p>
           </div>
           <div className="top-albums">
