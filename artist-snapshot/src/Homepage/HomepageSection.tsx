@@ -20,7 +20,7 @@ export function HomepageSection() {
   return (
     <>
       <div className="header">
-        <div className="logo"></div>
+        <div className="logo">TheArtistSnapshot</div>
         <div className="search-div">
           <form action="" method="POST" className="form">
             <label htmlFor="artist-search"></label>

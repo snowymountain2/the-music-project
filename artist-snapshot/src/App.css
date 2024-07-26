@@ -12,11 +12,13 @@
   padding-left: 30vw;
 }
 .top-videos {
-  width: 500px !important;
+  width: 400px !important;
   flex-shrink: 0;
 }
 .top-songs {
   padding: 0px 50px;
+  width: 200px !important;
+  flex-shrink: 0;
 }
 
 .top-videos-items {
