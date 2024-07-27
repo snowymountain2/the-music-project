@@ -39,6 +39,20 @@ async function retrievePopularSongs() {
   return popularSongsData;
 }
 
+async function retrievePopularAlbums() {
+  puppeteer.use(StealthPlugin());
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  await page.setDefaultNavigationTimeout(0);
+  await page.goto("https://acharts.co/us_albums_top_100");
+
+  const popularAlbumsData = await page.evaluate(() =>
+    Array.from(document.querySelectorAll(".cImg img"), (e) => e.src)
+  );
+  await browser.close();
+  return popularAlbumsData;
+}
+
 async function retrievePopularVideos() {
   puppeteer.use(StealthPlugin());
   const browser = await puppeteer.launch();
@@ -72,11 +86,13 @@ app.use(async (req, res) => {
   const popularTopicsDataFromScraper = await retrievePopularTopics();
   const popularSongsDataFromScraper = await retrievePopularSongs();
   const popularVideosFromScraper = await retrievePopularVideos();
+  const popularAlbumsFromScraper = await retrievePopularAlbums();
   const scrapedData = [
     {
       popularTopics: [...popularTopicsDataFromScraper],
       popularSongsData: [...popularSongsDataFromScraper],
       popularVideosData: [...popularVideosFromScraper],
+      popularAlbumData: [...popularAlbumsFromScraper],
     },
   ];
   // console.log(scrapedData[0].popularVideosData);

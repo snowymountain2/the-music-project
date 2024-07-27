@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { TopVideos } from "./TopVideos";
+import { TopAlbums } from "./TopAlbums";
 
 export function HomepageSection() {
   const [popularTopics, setPopularTopics] = useState([{}]);
@@ -80,10 +81,7 @@ export function HomepageSection() {
           <div className="top-albums">
             <h2>Trending Albums</h2>
             <div className="album-container">
-              <div className="albums"></div>
-              <div className="albums"></div>
-              <div className="albums"></div>
-              <div className="albums"></div>
+              <TopAlbums scrapedData={popularTopics} />
             </div>
           </div>
         </div>
