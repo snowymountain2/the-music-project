@@ -71,11 +71,11 @@ async function retrievePopularVideos() {
 
   // extracts the youtube vid id from string of each videos html
   const getMusicVideoYouTubeIds = listFilteredToMusicVideos.map((e) => {
-    const ex = e.slice(
+    const youtubeVideoIds = e.slice(
       e.indexOf("?v=") + 3,
       e.indexOf(">", e.indexOf("?v=")) - 1
     );
-    return ex;
+    return youtubeVideoIds;
   });
 
   await browser.close();

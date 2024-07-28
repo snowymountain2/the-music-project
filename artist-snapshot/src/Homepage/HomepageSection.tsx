@@ -3,14 +3,21 @@ import { useEffect, useState } from "react";
 import { TopVideos } from "./TopVideos";
 import { TopAlbums } from "./TopAlbums";
 
+interface scrapedDataType {
+  popularTopics: string[];
+  popularSongsData: string[];
+  popularVideosData: string[];
+  popularAlbumData: string[];
+}
+
 export function HomepageSection() {
-  const [popularTopics, setPopularTopics] = useState([{}]);
+  const [popularTopics, setPopularTopics] = useState<scrapedDataType[]>([{}]);
 
   useEffect(() => {
     async function getData() {
-      let response = await fetch("http://localhost:8080/example");
-      let datas = await response.json();
-      setPopularTopics(datas);
+      const response = await fetch("http://localhost:8080/example");
+      const formattedData: scrapedDataType[] = await response.json();
+      setPopularTopics(formattedData);
     }
     console.log("befre", popularTopics.length);
 
