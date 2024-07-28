@@ -7,12 +7,11 @@ export function TopAlbums({ scrapedData }) {
         ? "<p>sdfJ</p>"
         : [...Array(4)].map((e, i) => {
             return (
-              <li key={i}>
-                <img
-                  src={scrapedData[0].popularAlbumData[i]}
-                  alt="React Image"
-                />
-              </li>
+              <img
+                key={i}
+                src={scrapedData[0].popularAlbumData[i]}
+                alt="React Image"
+              />
             );
           })}
     </>

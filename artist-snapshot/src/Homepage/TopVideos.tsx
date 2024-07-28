@@ -6,7 +6,7 @@ export function TopVideos({ YouTubeVideoIDs }) {
     height: "168",
     width: "300",
     playerVars: {
-      autoplay: 1,
+      autoplay: 0,
     },
   };
   return (

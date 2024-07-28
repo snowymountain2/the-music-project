@@ -43,7 +43,7 @@ export function HomepageSection() {
             <ol>
               {popularTopics[0].popularSongsData === undefined
                 ? "<li>1</li>"
-                : [...Array(10)].map((e, index) => {
+                : [...Array(15)].map((e, index) => {
                     return (
                       <li key={index}>
                         {popularTopics[0].popularSongsData[index]}
