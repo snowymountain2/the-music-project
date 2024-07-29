@@ -16,6 +16,7 @@
 .top-videos {
   width: 400px !important; */
   flex-shrink: 0;
+  padding-right: 15px;
 }
 .top-songs {
   /* padding: 0px 50px; */
@@ -52,8 +53,29 @@
   background-color: red;
 }
 
-@media (max-width: 1120px) {
+@media (max-width: 920px) {
   .main-container {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
+
+
+@media (max-width: 920px) {
+.top-videos-items {
+  width: 400px !important; */
+  flex-shrink: 0;
+  align-items: center;
+    justify-content: center;
+
+}
+}
+
+@media (max-width: 920px) {
+  .top-songs h2 {
+    text-align: center !important;
+    justify-content: center !important;
+  
+  }
+  }

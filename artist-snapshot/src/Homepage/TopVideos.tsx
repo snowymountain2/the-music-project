@@ -1,7 +1,19 @@
 import React from "react";
 import YouTube from "react-youtube";
+import { scrapedDataType } from "./HomepageSection";
 
-export function TopVideos({ YouTubeVideoIDs }) {
+// export interface scrapedDataType {
+//   popularTopics: string[];
+//   popularSongsData: string[];
+//   popularVideosData: string[];
+//   popularAlbumData: string[];
+// }
+
+export function TopVideos({
+  YouTubeVideoIDs,
+}: {
+  YouTubeVideoIDs: scrapedDataType[];
+}) {
   const opts = {
     height: "168",
     width: "300",
@@ -11,6 +23,7 @@ export function TopVideos({ YouTubeVideoIDs }) {
   };
   return (
     <>
+      <h2> Top Videos </h2>
       {YouTubeVideoIDs[0].popularVideosData === undefined
         ? "<p>sdfJ</p>"
         : [...Array(4)].map((e, i) => {

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { TopVideos } from "./TopVideos";
 import { TopAlbums } from "./TopAlbums";
 
-interface scrapedDataType {
+export interface scrapedDataType {
   popularTopics: string[];
   popularSongsData: string[];
   popularVideosData: string[];
@@ -19,10 +19,8 @@ export function HomepageSection() {
       const formattedData: scrapedDataType[] = await response.json();
       setPopularTopics(formattedData);
     }
-    console.log("befre", popularTopics.length);
 
     getData();
-    console.log("after", popularTopics.length);
   }, []);
 
   return (
@@ -62,7 +60,6 @@ export function HomepageSection() {
         </div>
         <div className="top-videos">
           <p>
-            <h2> Top Videos </h2>
             <div className="top-videos-items">
               <TopVideos YouTubeVideoIDs={popularTopics} />
             </div>
