@@ -26,7 +26,9 @@ export function HomepageSection() {
   return (
     <>
       <div className="header">
-        <div className="logo">TheArtistSnapshot</div>
+        <div className="logo">
+          <em>TheArtistSnapshot</em>
+        </div>
         <div className="search-div">
           <form action="" method="POST" className="form">
             <label htmlFor="artist-search"></label>
@@ -59,11 +61,9 @@ export function HomepageSection() {
           </p>
         </div>
         <div className="top-videos">
-          <p>
-            <div className="top-videos-items">
-              <TopVideos YouTubeVideoIDs={popularTopics} />
-            </div>
-          </p>
+          <div className="top-videos-items">
+            <TopVideos YouTubeVideoIDs={popularTopics} />
+          </div>
         </div>
         <div className="container-three">
           <div className="trending-topics">

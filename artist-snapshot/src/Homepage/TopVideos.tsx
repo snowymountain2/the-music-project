@@ -26,7 +26,7 @@ export function TopVideos({
       <h2> Top Videos </h2>
       {YouTubeVideoIDs[0].popularVideosData === undefined
         ? "<p>sdfJ</p>"
-        : [...Array(4)].map((e, i) => {
+        : [...Array(3)].map((e, i) => {
             return (
               <YouTube
                 videoId={YouTubeVideoIDs[0].popularVideosData[i]}

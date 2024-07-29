@@ -1,6 +1,19 @@
 .header {
   display: flex;
   font-family: lato !important;
+  background-color: #F5F8FA;
+  justify-content: center;
+  align-items: center;  
+  height: 40px;
+}
+
+body {
+  margin: 0px 0px;
+  padding: 0px 0px;
+}
+
+.logo {
+  padding-right: 300px;
 }
 
 .main-container {
@@ -44,16 +57,23 @@
 
 .album-container {
   display: flex;
+  flex-wrap: wrap;
+
+  
 }
 
 .albums {
   width: 100px;
   height: 100px;
   margin: 5px;
-  background-color: red;
+  color: red;
 }
 
-@media (max-width: 920px) {
+.album-cover {
+ padding: 2px 2px;
+}
+
+@media (max-width: 950px) {
   .main-container {
     display: flex;
     flex-direction: column;
@@ -62,7 +82,7 @@
 }
 
 
-@media (max-width: 920px) {
+@media (max-width: 950px) {
 .top-videos-items {
   width: 400px !important; */
   flex-shrink: 0;
@@ -72,7 +92,7 @@
 }
 }
 
-@media (max-width: 920px) {
+@media (max-width: 950px) {
   .top-songs h2 {
     text-align: center !important;
     justify-content: center !important;

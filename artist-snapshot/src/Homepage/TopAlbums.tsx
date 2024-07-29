@@ -5,12 +5,12 @@ export function TopAlbums({ scrapedData }) {
     <>
       {scrapedData[0].popularAlbumData === undefined
         ? "<p>sdfJ</p>"
-        : [...Array(4)].map((e, i) => {
+        : [...Array(5)].map((e, i) => {
             return (
               <img
                 key={i}
                 src={scrapedData[0].popularAlbumData[i]}
-                alt="React Image"
+                className="album-cover"
               />
             );
           })}
