@@ -46,13 +46,13 @@ export function HomepageSection() {
       <div className="main-container">
         <div className="top-songs">
           <p>
-            <h2>Top Songs</h2>
+            <h3>Top Songs</h3>
             <ol>
               {popularTopics[0].popularSongsData === undefined
                 ? "<li>1</li>"
                 : [...Array(15)].map((e, index) => {
                     return (
-                      <li key={index}>
+                      <li key={index} className="list-item">
                         {popularTopics[0].popularSongsData[index]}
                       </li>
                     );
@@ -67,14 +67,14 @@ export function HomepageSection() {
         </div>
         <div className="container-three">
           <div className="trending-topics">
-            <h2>Trending Music Topics</h2>
+            <h3>Trending Music Topics</h3>
             <p>
               <ol>
                 {popularTopics[0].popularTopics === undefined
                   ? "<li>1</li>"
                   : [...Array(10)].map((e, index) => {
                       return (
-                        <li key={index}>
+                        <li key={index} className="list-item">
                           {popularTopics[0].popularTopics[index]}
                         </li>
                       );
@@ -83,7 +83,7 @@ export function HomepageSection() {
             </p>
           </div>
           <div className="top-albums">
-            <h2>Trending Albums</h2>
+            <h3>Trending Albums</h3>
             <div className="album-container">
               <TopAlbums scrapedData={popularTopics} />
             </div>

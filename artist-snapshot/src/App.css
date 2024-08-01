@@ -16,6 +16,12 @@ body {
   padding-right: 300px;
 }
 
+.list-item {
+  border-bottom: 1px solid #EBEBEB;
+  padding-bottom: 4px;
+  
+}
+
 .main-container {
   display: flex;
   margin-left: 6%;
