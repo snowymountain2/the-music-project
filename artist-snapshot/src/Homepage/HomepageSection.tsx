@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { TopVideos } from "./TopVideos";
 import { TopAlbums } from "./TopAlbums";
+import { LocationModal } from "./LocationModal";
 
 export interface scrapedDataType {
   popularTopics: string[];
@@ -29,6 +30,7 @@ export function HomepageSection() {
         <div className="logo">
           <em>TheArtistSnapshot</em>
         </div>
+        <LocationModal />
         <div className="search-div">
           <form action="" method="POST" className="form">
             <label htmlFor="artist-search"></label>
@@ -61,6 +63,7 @@ export function HomepageSection() {
           </p>
         </div>
         <div className="top-videos">
+          <h3>Top Videos</h3>
           <div className="top-videos-items">
             <TopVideos YouTubeVideoIDs={popularTopics} />
           </div>

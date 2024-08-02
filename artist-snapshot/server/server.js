@@ -3,6 +3,7 @@ import puppeteer from "puppeteer-extra";
 // import puppeteer from "puppeteer";
 import cors from "cors";
 import StealthPlugin from "puppeteer-extra-plugin-stealth";
+// import { pool } from "./db";
 
 const app = express();
 
