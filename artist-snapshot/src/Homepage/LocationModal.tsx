@@ -2,18 +2,33 @@ import React from "react";
 import { useState } from "react";
 
 export function LocationModal() {
-  const [wasClicked, setWasClicked] = useState<boolean>(false);
+  const [locationBTNWasClicked, setLocationBTNWasClicked] =
+    useState<boolean>(false);
+  const [divWasClicked, setDivWasClicked] = useState<boolean>(true);
 
-  function handleClick() {
-    setWasClicked(!wasClicked);
+  function handleLocationBtnClick() {
+    setLocationBTNWasClicked(!locationBTNWasClicked);
+  }
+  function handleDivWasClicked() {
+    setDivWasClicked(!divWasClicked);
   }
   return (
     <>
-      <button className="concert-btn" onClick={handleClick}>
+      <button className="concert-btn" onClick={handleLocationBtnClick}>
         Concert Location
       </button>
-      <div className="modal-container">
-        <div className={wasClicked ? "modal-show" : "modal-hide"}></div>
+
+      <div
+        className={
+          locationBTNWasClicked && divWasClicked
+            ? "modal-container"
+            : "modal-hide"
+        }
+        onClick={handleLocationBtnClick}
+      >
+        <div
+          className={locationBTNWasClicked ? "modal-show" : "modal-hide"}
+        ></div>
       </div>
     </>
   );
