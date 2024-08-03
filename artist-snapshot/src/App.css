@@ -21,6 +21,7 @@ body {
   justify-content: center;
   align-items: flex-start; 
   overflow: auto; 
+  z-index: 6;
   background-color: rgba(0,0,0,0.8);
 }
 

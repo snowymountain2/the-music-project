@@ -4,13 +4,15 @@ import { useState } from "react";
 export function LocationModal() {
   const [locationBTNWasClicked, setLocationBTNWasClicked] =
     useState<boolean>(false);
-  const [divWasClicked, setDivWasClicked] = useState<boolean>(true);
+  const [isBackgroundDimmed, setIsBackgroundDimmed] = useState<boolean>(false);
 
   function handleLocationBtnClick() {
     setLocationBTNWasClicked(!locationBTNWasClicked);
+    setIsBackgroundDimmed(!isBackgroundDimmed);
   }
-  function handleDivWasClicked() {
-    setDivWasClicked(!divWasClicked);
+  function handleDimmedBackgroundWasClicked() {
+    setIsBackgroundDimmed(!isBackgroundDimmed);
+    setLocationBTNWasClicked(!locationBTNWasClicked);
   }
   return (
     <>
@@ -20,16 +22,15 @@ export function LocationModal() {
 
       <div
         className={
-          locationBTNWasClicked && divWasClicked
+          locationBTNWasClicked && isBackgroundDimmed
             ? "modal-container"
             : "modal-hide"
         }
-        onClick={handleLocationBtnClick}
-      >
-        <div
-          className={locationBTNWasClicked ? "modal-show" : "modal-hide"}
-        ></div>
-      </div>
+        onClick={handleDimmedBackgroundWasClicked}
+      ></div>
+      <div
+        className={locationBTNWasClicked ? "modal-show" : "modal-hide"}
+      ></div>
     </>
   );
 }
