@@ -16,7 +16,7 @@ export function LocationModal() {
   }
   return (
     <>
-      <button className="concert-btn" onClick={handleLocationBtnClick}>
+      <button className="concert-btn btn" onClick={handleLocationBtnClick}>
         Concert Location
       </button>
 
@@ -28,9 +28,21 @@ export function LocationModal() {
         }
         onClick={handleDimmedBackgroundWasClicked}
       ></div>
-      <div
-        className={locationBTNWasClicked ? "modal-show" : "modal-hide"}
-      ></div>
+      <div className={locationBTNWasClicked ? "modal-show" : "modal-hide"}>
+        <h3>Where to search for concerts?</h3>
+        <form action="/location">
+          <label htmlFor="name">Location </label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Houston, TX"
+            required
+          />
+          <input type="submit" className="location-submit btn" />
+          {/* <button className="location-submit btn">Submit</button> */}
+        </form>
+      </div>
     </>
   );
 }

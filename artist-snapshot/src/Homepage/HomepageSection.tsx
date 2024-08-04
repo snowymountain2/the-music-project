@@ -27,9 +27,7 @@ export function HomepageSection() {
   return (
     <>
       <div className="header">
-        <div className="logo">
-          <em>TheArtistSnapshot</em>
-        </div>
+        <div className="logo">The Artist Snapshot</div>
         <LocationModal />
         <div className="search-div">
           <form action="" method="POST" className="form">
@@ -86,6 +84,7 @@ export function HomepageSection() {
             </p>
           </div>
           <div className="top-albums">
+            <div className="blue-header"></div>
             <h3>Trending Albums</h3>
             <div className="album-container">
               <TopAlbums scrapedData={popularTopics} />

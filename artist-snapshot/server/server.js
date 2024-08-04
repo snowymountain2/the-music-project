@@ -83,6 +83,10 @@ async function retrievePopularVideos() {
   return getMusicVideoYouTubeIds;
 }
 
+app.post("/location", (req, res) => {
+  console.log(req.body);
+});
+
 app.use(async (req, res) => {
   const popularTopicsDataFromScraper = await retrievePopularTopics();
   const popularSongsDataFromScraper = await retrievePopularSongs();
