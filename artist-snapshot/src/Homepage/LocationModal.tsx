@@ -1,10 +1,22 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export function LocationModal() {
   const [locationBTNWasClicked, setLocationBTNWasClicked] =
     useState<boolean>(false);
   const [isBackgroundDimmed, setIsBackgroundDimmed] = useState<boolean>(false);
+
+  useEffect(() => {
+    //     var form = document.getElementById('form');
+    // form.addEventListener('submit', function(e){
+    //   e.preventDefault();
+    //   var formData = new FormData(this);
+    //   var data = new URLSearchParams(formData);
+    //   fetch('',{
+    //     method: 'POST',
+    //     body: data
+    //   });
+  }, []);
 
   function handleLocationBtnClick() {
     setLocationBTNWasClicked(!locationBTNWasClicked);
@@ -30,7 +42,11 @@ export function LocationModal() {
       ></div>
       <div className={locationBTNWasClicked ? "modal-show" : "modal-hide"}>
         <h3>Where to search for concerts?</h3>
-        <form action="/location">
+        <form
+          action="http://localhost:8080/location"
+          // encType="multipart/form-data"
+          method="post"
+        >
           <label htmlFor="name">Location </label>
           <input
             type="text"

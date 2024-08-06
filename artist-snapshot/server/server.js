@@ -3,7 +3,7 @@ import puppeteer from "puppeteer-extra";
 // import puppeteer from "puppeteer";
 import cors from "cors";
 import StealthPlugin from "puppeteer-extra-plugin-stealth";
-// import { pool } from "./db";
+import { pool } from "./db.js";
 
 const app = express();
 
@@ -83,8 +83,17 @@ async function retrievePopularVideos() {
   return getMusicVideoYouTubeIds;
 }
 
+app.use("/hi", (req, res) => {
+  console.log("sssssdfs");
+  res.send("hellooo");
+});
+
+//substitute for body parser functionality
+app.use(express.urlencoded({ extended: true }));
+
 app.post("/location", (req, res) => {
-  console.log(req.body);
+  console.log(req.body.name);
+  res.redirect("http://localhost:5173/");
 });
 
 app.use(async (req, res) => {
