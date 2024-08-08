@@ -6,17 +6,26 @@ export function LocationModal() {
     useState<boolean>(false);
   const [isBackgroundDimmed, setIsBackgroundDimmed] = useState<boolean>(false);
 
-  useEffect(() => {
-    //     var form = document.getElementById('form');
-    // form.addEventListener('submit', function(e){
-    //   e.preventDefault();
-    //   var formData = new FormData(this);
-    //   var data = new URLSearchParams(formData);
-    //   fetch('',{
-    //     method: 'POST',
-    //     body: data
-    //   });
-  }, []);
+  function handleFormSubmit(e) {
+    console.log(e);
+  }
+
+  async function handleLocationFormSubmit(e) {
+    e.preventDefault();
+    const data = new FormData(e.target);
+    const locationData = data.get("name");
+    const example = {
+      input: locationData,
+    };
+    fetch("http://localhost:8080/location", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(example),
+    });
+    console.log("sdfdsfsfsdfsdfsf");
+  }
 
   function handleLocationBtnClick() {
     setLocationBTNWasClicked(!locationBTNWasClicked);
@@ -25,6 +34,11 @@ export function LocationModal() {
   function handleDimmedBackgroundWasClicked() {
     setIsBackgroundDimmed(!isBackgroundDimmed);
     setLocationBTNWasClicked(!locationBTNWasClicked);
+  }
+
+  function handleFormSubmitButtonClick() {
+    setLocationBTNWasClicked(!locationBTNWasClicked);
+    setIsBackgroundDimmed(!isBackgroundDimmed);
   }
   return (
     <>
@@ -43,9 +57,12 @@ export function LocationModal() {
       <div className={locationBTNWasClicked ? "modal-show" : "modal-hide"}>
         <h3>Where to search for concerts?</h3>
         <form
-          action="http://localhost:8080/location"
+          // action="http://localhost:8080/location"
           // encType="multipart/form-data"
           method="post"
+          // onSubmit={handleFormSubmit}
+          id="locationform"
+          onSubmit={handleLocationFormSubmit}
         >
           <label htmlFor="name">Location </label>
           <input
@@ -55,8 +72,14 @@ export function LocationModal() {
             placeholder="Houston, TX"
             required
           />
-          <input type="submit" className="location-submit btn" />
-          {/* <button className="location-submit btn">Submit</button> */}
+          {/* <input type="submit" className="location-submit btn" /> */}
+          <button
+            className="location-submit btn"
+            type="submit"
+            onClick={handleFormSubmitButtonClick}
+          >
+            Submit
+          </button>
         </form>
       </div>
     </>

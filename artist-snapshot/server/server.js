@@ -89,11 +89,11 @@ app.use("/hi", (req, res) => {
 });
 
 //substitute for body parser functionality
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
 
 app.post("/location", (req, res) => {
-  console.log(req.body.name);
-  res.redirect("http://localhost:5173/");
+  console.log(req.body);
 });
 
 app.use(async (req, res) => {
