@@ -6,25 +6,26 @@ export function LocationModal() {
     useState<boolean>(false);
   const [isBackgroundDimmed, setIsBackgroundDimmed] = useState<boolean>(false);
 
-  function handleFormSubmit(e) {
-    console.log(e);
+  interface FormData {
+    city: string;
   }
 
   async function handleLocationFormSubmit(e) {
     e.preventDefault();
     const data = new FormData(e.target);
-    const locationData = data.get("name");
-    const example = {
-      input: locationData,
+    const locationData = data.get("name") as string;
+    const example: FormData = {
+      city: locationData,
     };
-    fetch("http://localhost:8080/location", {
+    const raw = await fetch("http://localhost:8080/location", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(example),
     });
-    console.log("sdfdsfsfsdfsdfsf");
+    const newData = await raw.json();
+    console.log(newData);
   }
 
   function handleLocationBtnClick() {

@@ -83,17 +83,61 @@ async function retrievePopularVideos() {
   return getMusicVideoYouTubeIds;
 }
 
-app.use("/hi", (req, res) => {
-  console.log("sssssdfs");
-  res.send("hellooo");
-});
+async function retrieveConcertData(cityTrimmed, stateTrimmed) {
+  puppeteer.use(StealthPlugin());
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  await page.setDefaultNavigationTimeout(0);
+  await page.goto(
+    `https://www.bandsintown.com/c/${cityTrimmed}-${stateTrimmed}`
+  );
 
-//substitute for body parser functionality
+  const concertImageData = await page.evaluate(() =>
+    Array.from(
+      document.querySelectorAll(".TCef80WG0jxzHaDCaEak div img"),
+      (e) => e.src
+    )
+  );
+  const concertDateData = await page.evaluate(() =>
+    Array.from(
+      document.querySelectorAll(".n5yOOfnMDiOdg8lDW0Zz a div"),
+      (e) => e.innerText
+    )
+  );
+  const concertNameData = await page.evaluate(() =>
+    Array.from(
+      document.querySelectorAll(".V5CnK8MdMT0lQKXIxViO"),
+      (e) => e.innerText
+    )
+  );
+  const concertLocationData = await page.evaluate(() =>
+    Array.from(
+      document.querySelectorAll(".nfmyI8S7dEImslMTJtrU"),
+      (e) => e.innerText
+    )
+  );
+
+  const concertDataObject = {
+    concertImageURLs: concertImageData,
+    concertDate: concertDateData,
+    ConcertName: concertNameData,
+    ConcertLocation: concertLocationData,
+  };
+
+  await browser.close();
+  return concertDataObject;
+}
+
 app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
-app.post("/location", (req, res) => {
-  console.log(req.body);
+app.post("/location", async (req, res) => {
+  const formDataFromClient = req.body;
+  const [city, state] = formDataFromClient.city.split(",");
+  const cityTrimmed = city.trim();
+  const stateTrimmed = state.trim();
+  const concertData = await retrieveConcertData(cityTrimmed, stateTrimmed);
+  res.send(concertData);
 });
 
 app.use(async (req, res) => {
