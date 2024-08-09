@@ -11,6 +11,7 @@
 body {
   margin: 0px 0px;
   padding: 0px 0px;
+  font-size: 0.9em;
 }
 
 .blue-header {
@@ -101,7 +102,7 @@ body {
   
 }
 
-.main-container {
+.main-container-first-row {
   display: flex;
   margin-left: 6%;
   margin-right: 8%;
@@ -158,8 +159,22 @@ body {
  padding: 2px 2px;
 }
 
+.main-container-second-row {
+  display: flex;
+}
+
+.concert-item {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.concert-cover {
+  width: 200px;
+  height: 200px;
+}
+
 @media (max-width: 950px) {
-  .main-container {
+  .main-container-first-row {
     display: flex;
     flex-direction: column;
     align-items: center;

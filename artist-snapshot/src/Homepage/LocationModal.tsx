@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
-export function LocationModal() {
+export function LocationModal({ concertData, setConcertData }) {
   const [locationBTNWasClicked, setLocationBTNWasClicked] =
     useState<boolean>(false);
   const [isBackgroundDimmed, setIsBackgroundDimmed] = useState<boolean>(false);
@@ -25,7 +25,7 @@ export function LocationModal() {
       body: JSON.stringify(example),
     });
     const newData = await raw.json();
-    console.log(newData);
+    setConcertData((concertData) => newData);
   }
 
   function handleLocationBtnClick() {

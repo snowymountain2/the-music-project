@@ -3,16 +3,28 @@ import { useEffect, useState } from "react";
 import { TopVideos } from "./TopVideos";
 import { TopAlbums } from "./TopAlbums";
 import { LocationModal } from "./LocationModal";
+import { ConcertList } from "./ConcertList";
 
-export interface scrapedDataType {
+export interface nonLocationScrapedDataType {
   popularTopics: string[];
   popularSongsData: string[];
   popularVideosData: string[];
   popularAlbumData: string[];
 }
+export interface locationScrapedDataType {
+  concertImageURLs: string[];
+  concertDate: string[];
+  ConcertName: string[];
+  ConcertLocation: string[];
+}
 
 export function HomepageSection() {
-  const [popularTopics, setPopularTopics] = useState<scrapedDataType[]>([{}]);
+  const [popularTopics, setPopularTopics] = useState<
+    nonLocationScrapedDataType[]
+  >([{}]);
+  const [concertData, setConcertData] = useState<locationScrapedDataType[]>([
+    {},
+  ]);
 
   useEffect(() => {
     async function getData() {
@@ -28,7 +40,10 @@ export function HomepageSection() {
     <>
       <div className="header">
         <div className="logo">The Artist Snapshot</div>
-        <LocationModal />
+        <LocationModal
+          concertData={concertData}
+          setConcertData={setConcertData}
+        />
         <div className="search-div">
           <form action="" method="POST" className="form">
             <label htmlFor="artist-search"></label>
@@ -43,7 +58,7 @@ export function HomepageSection() {
           </form>
         </div>
       </div>
-      <div className="main-container">
+      <div className="main-container-first-row">
         <div className="top-songs">
           <p>
             <h3>Top Songs</h3>
@@ -91,6 +106,9 @@ export function HomepageSection() {
             </div>
           </div>
         </div>
+      </div>
+      <div className="main-container-second-row">
+        <ConcertList concertData={concertData} />
       </div>
     </>
   );
