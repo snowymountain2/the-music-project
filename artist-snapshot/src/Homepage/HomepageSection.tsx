@@ -4,6 +4,7 @@ import { TopVideos } from "./TopVideos";
 import { TopAlbums } from "./TopAlbums";
 import { LocationModal } from "./LocationModal";
 import { ConcertList } from "./ConcertList";
+import { TopSongs } from "./TopSongs";
 
 export interface nonLocationScrapedDataType {
   popularTopics: string[];
@@ -62,17 +63,7 @@ export function HomepageSection() {
         <div className="top-songs">
           <p>
             <h3>Top Songs</h3>
-            <ol>
-              {popularTopics[0].popularSongsData === undefined
-                ? "<li>1</li>"
-                : [...Array(15)].map((e, index) => {
-                    return (
-                      <li key={index} className="list-item">
-                        {popularTopics[0].popularSongsData[index]}
-                      </li>
-                    );
-                  })}
-            </ol>
+            <TopSongs popularTopics={popularTopics} />
           </p>
         </div>
         <div className="top-videos">
@@ -82,6 +73,9 @@ export function HomepageSection() {
           </div>
         </div>
         <div className="container-three">
+          <div className="main-container-second-row">
+            <ConcertList concertData={concertData} />
+          </div>
           <div className="trending-topics">
             <h3>Trending Music Topics</h3>
             <p>
@@ -107,9 +101,9 @@ export function HomepageSection() {
           </div>
         </div>
       </div>
-      <div className="main-container-second-row">
+      {/* <div className="main-container-second-row">
         <ConcertList concertData={concertData} />
-      </div>
+      </div> */}
     </>
   );
 }
