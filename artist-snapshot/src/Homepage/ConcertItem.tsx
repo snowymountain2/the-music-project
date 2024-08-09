@@ -10,6 +10,8 @@ export function ConcertItem({
     <div className="concert-item">
       <img src={concertImageURLs} className="concert-cover" />
       <p>{ConcertName}</p>
+      <p>{concertDate}</p>
+      <p>{ConcertLocation}</p>
     </div>
   );
 }

@@ -85,7 +85,11 @@ async function retrievePopularVideos() {
 
 async function retrieveConcertData(cityTrimmed, stateTrimmed) {
   puppeteer.use(StealthPlugin());
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({
+    headless: true,
+    ignoreHTTPSErrors: true,
+    args: [`--window-size=2400,1200`], // new option
+  });
   const page = await browser.newPage();
   await page.setDefaultNavigationTimeout(0);
   await page.goto(
@@ -100,7 +104,9 @@ async function retrieveConcertData(cityTrimmed, stateTrimmed) {
   );
   const concertDateData = await page.evaluate(() =>
     Array.from(
-      document.querySelectorAll(".n5yOOfnMDiOdg8lDW0Zz a div"),
+      document.querySelectorAll(
+        ".n5yOOfnMDiOdg8lDW0Zz .RsL1vEQL3esgvcWITgg2 + div"
+      ),
       (e) => e.innerText
     )
   );
