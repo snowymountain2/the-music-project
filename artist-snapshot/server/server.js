@@ -79,6 +79,10 @@ async function retrievePopularVideos() {
     return youtubeVideoIds;
   });
 
+  const result = await db.query("INSERT INTO webdata (test) VALUEs($1)", [
+    getMusicVideoYouTubeIds,
+  ]);
+
   await browser.close();
   return getMusicVideoYouTubeIds;
 }
@@ -144,8 +148,8 @@ app.post("/api", async (req, res) => {
   //   "INSERT INTO webdata (ex) VALUE($1)",
   //   [desc]
   // );
-  const result = await db.query("INSERT INTO webdata (ex) VALUEs($1)", [
-    "desc",
+  const result = await db.query("INSERT INTO webdata (test) VALUEs($1)", [
+    ["deddddddsc"],
   ]);
   // console.log(result.rows[0]);
   // res.send(result.rows[0]);

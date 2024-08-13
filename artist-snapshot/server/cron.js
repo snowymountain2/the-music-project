@@ -1,18 +1,7 @@
 import cron from "node-cron";
-import { pool } from "./db.js";
-import cors from "cors";
 
-// cron.schedule("* * * * * *", () => {
-//   console.log("running a task every minute");
-// });
+const task = cron.schedule("58 * * * * *", () => {
+  console.log("You will see this message every second");
+});
 
-// run scraper every 1 minute
-// insert scraped data into database
-
-async function example() {
-  await pool.query("INSERT INTO webdatadb (popularTopics) VALUES($1)", [
-    ["1", "2"],
-  ]);
-}
-
-example();
+task.start();
