@@ -1,9 +1,9 @@
 import express from "express";
 import puppeteer from "puppeteer-extra";
-// import puppeteer from "puppeteer";
 import cors from "cors";
 import StealthPlugin from "puppeteer-extra-plugin-stealth";
-import { pool } from "./db.js";
+// import { config } from "./db.js";
+import * as db from "./db.js";
 
 const app = express();
 
@@ -136,6 +136,20 @@ async function retrieveConcertData(cityTrimmed, stateTrimmed) {
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.post("/api", async (req, res) => {
+  const { desc } = req.body;
+  console.log(desc);
+  // const additionToDataBase = await db.query(
+  //   "INSERT INTO webdata (ex) VALUE($1)",
+  //   [desc]
+  // );
+  const result = await db.query("INSERT INTO webdata (ex) VALUEs($1)", [
+    "desc",
+  ]);
+  // console.log(result.rows[0]);
+  // res.send(result.rows[0]);
+});
 
 app.post("/location", async (req, res) => {
   const formDataFromClient = req.body;

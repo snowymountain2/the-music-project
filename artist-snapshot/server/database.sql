@@ -5,7 +5,7 @@ CREATE TABLE webdata(
     popularTopics text[],
     popularSongsData text[],
     popularVideosData text[],
-    popularAlbumData text[]
+    popularAlbumData text[],
 );
 
   

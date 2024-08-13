@@ -40,45 +40,29 @@ export function HomepageSection() {
   return (
     <>
       <div className="header">
-        <div className="logo">The Artist Snapshot</div>
+        <div className="logo">Today in Music</div>
         <LocationModal
           concertData={concertData}
           setConcertData={setConcertData}
         />
-        <div className="search-div">
-          <form action="" method="POST" className="form">
-            <label htmlFor="artist-search"></label>
-            <input
-              type="search"
-              className="search-field"
-              name="search-field"
-              value="Search Artist"
-              id="artist-search"
-            ></input>
-            <input type="submit" value="Submit"></input>
-          </form>
-        </div>
       </div>
-      <div className="main-container-first-row">
-        <div className="top-songs">
-          <p>
-            <h3>Top Songs</h3>
-            <TopSongs popularTopics={popularTopics} />
-          </p>
-        </div>
-        <div className="top-videos">
-          <h3>Top Videos</h3>
-          <div className="top-videos-items">
-            <TopVideos YouTubeVideoIDs={popularTopics} />
+      <div className="main-container">
+        <div className="grid-container">
+          <div className="main-container-first-row">
+            <div className="top-videos">
+              <h3>Top Videos</h3>
+              <div className="top-videos-items">
+                <TopVideos YouTubeVideoIDs={popularTopics} />
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="container-three">
-          <div className="main-container-second-row">
-            <ConcertList concertData={concertData} />
-          </div>
-          <div className="trending-topics">
-            <h3>Trending Music Topics</h3>
-            <p>
+          <div className="row-two">
+            <div className="top-songs">
+              <TopSongs popularTopics={popularTopics} />
+            </div>
+
+            <div className="trending-topics">
+              <h3>Trending Music Topics</h3>
               <ol>
                 {popularTopics[0].popularTopics === undefined
                   ? "<li>1</li>"
@@ -90,20 +74,22 @@ export function HomepageSection() {
                       );
                     })}
               </ol>
-            </p>
+            </div>
+            <div className="top-albums">
+              <div className="blue-header"></div>
+              <h3>Trending Albums</h3>
+              <div className="album-container">
+                <TopAlbums scrapedData={popularTopics} />
+              </div>
+            </div>
           </div>
-          <div className="top-albums">
-            <div className="blue-header"></div>
-            <h3>Trending Albums</h3>
-            <div className="album-container">
-              <TopAlbums scrapedData={popularTopics} />
+          <div className="row-three">
+            <div className="concert-list-row">
+              <ConcertList concertData={concertData} />
             </div>
           </div>
         </div>
       </div>
-      {/* <div className="main-container-second-row">
-        <ConcertList concertData={concertData} />
-      </div> */}
     </>
   );
 }

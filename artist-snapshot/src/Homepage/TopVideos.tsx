@@ -23,14 +23,14 @@ export function TopVideos({
   };
   return (
     <>
-      {/* <h3> Top Videos </h3> */}
       {YouTubeVideoIDs[0].popularVideosData === undefined
         ? "<p>sdfJ</p>"
-        : [...Array(4)].map((e, i) => {
+        : [...Array(3)].map((e, i) => {
             return (
               <YouTube
                 videoId={YouTubeVideoIDs[0].popularVideosData[i]}
                 opts={opts}
+                className="single-video"
               />
             );
           })}

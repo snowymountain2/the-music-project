@@ -5,7 +5,7 @@ export function TopAlbums({ scrapedData }) {
     <>
       {scrapedData[0].popularAlbumData === undefined
         ? "<p>sdfJ</p>"
-        : [...Array(5)].map((e, i) => {
+        : [...Array(3)].map((e, i) => {
             return (
               <img
                 key={i}
