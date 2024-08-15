@@ -4,11 +4,9 @@ import puppeteer from "puppeteer-extra";
 import cors from "cors";
 import StealthPlugin from "puppeteer-extra-plugin-stealth";
 
-const task = cron.schedule("58 * * * * *", async () => {
-  await retrievePopularTopics();
-  await retrievePopularSongs();
+const task = cron.schedule("44 * * * * *", async () => {
   await retrievePopularVideos();
-  await retrievePopularAlbums();
+  console.log("uploaded");
 });
 
 task.start();
@@ -23,10 +21,7 @@ async function retrievePopularTopics() {
   const popularTopicsData = await page.evaluate(() =>
     Array.from(document.querySelectorAll("h3"), (e) => e.innerText)
   );
-  const addTopicsToDB = await db.query(
-    "INSERT INTO scrapeddata (popularTopics) VALUEs($1)",
-    [popularTopicsData]
-  );
+
   await browser.close();
   return popularTopicsData;
 }
@@ -44,10 +39,7 @@ async function retrievePopularSongs() {
       (e) => e.innerText
     )
   );
-  const addSongsToDB = await db.query(
-    "INSERT INTO scrapeddata (popularSongsData) VALUEs($1)",
-    [popularSongsData]
-  );
+
   await browser.close();
   return popularSongsData;
 }
@@ -63,10 +55,6 @@ async function retrievePopularAlbums() {
     Array.from(document.querySelectorAll(".cImg img"), (e) => e.src)
   );
 
-  const addAlbumsToDB = await db.query(
-    "INSERT INTO scrapeddata (popularAlbumData) VALUEs($1)",
-    [popularAlbumsData]
-  );
   await browser.close();
   return popularAlbumsData;
 }
@@ -95,12 +83,34 @@ async function retrievePopularVideos() {
     );
     return youtubeVideoIds;
   });
-
-  const addVideosToDB = await db.query(
-    "INSERT INTO scrapeddata (popularVideosData) VALUEs($1)",
+  console.log("hiiiii");
+  const addAllMusicdataToDB = await db.query(
+    "INSERT INTO webdata (test) VALUES($1)",
     [getMusicVideoYouTubeIds]
   );
 
   await browser.close();
   return getMusicVideoYouTubeIds;
 }
+
+// async function sendScrapedDataToDatabase() {
+//   const popularTopicsDataFromScraper = await retrievePopularTopics();
+//   const popularSongsDataFromScraper = await retrievePopularSongs();
+//   const popularVideosFromScraper = await retrievePopularVideos();
+//   const popularAlbumsFromScraper = await retrievePopularAlbums();
+//   console.log("bottom");
+
+//   const addAllMusicdataToDB = await db.query(
+//     "INSERT INTO scrapeddata(popularTopics, popularSongsData, popularVideosData, popularAlbumData) VALUEs($1, $2, $3, $4)",
+//     [popularTopics, popularSongsData, popularVideosData, popularAlbumData]
+//   );
+//   // const scrapedData = [
+//   //   {
+//   //     popularTopics: [...popularTopicsDataFromScraper],
+//   //     popularSongsData: [...popularSongsDataFromScraper],
+//   //     popularVideosData: [...popularVideosFromScraper],
+//   //     popularAlbumData: [...popularAlbumsFromScraper],
+//   //   },
+//   // ];
+//   // console.log(scrapedData[0].popularVideosData);
+// }
