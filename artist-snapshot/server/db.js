@@ -7,7 +7,7 @@ const pool = new Pool({
   password: "Singyy90!@",
   host: "localhost",
   port: 5432,
-  database: "webdata",
+  database: "webdatadb",
 });
 
 export const query = (text, params, callback) => {

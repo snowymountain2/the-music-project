@@ -4,8 +4,8 @@ import puppeteer from "puppeteer-extra";
 import cors from "cors";
 import StealthPlugin from "puppeteer-extra-plugin-stealth";
 
-const task = cron.schedule("44 * * * * *", async () => {
-  await retrievePopularVideos();
+const task = cron.schedule("40 * * * * *", async () => {
+  await sendScrapedDataToDatabase();
   console.log("uploaded");
 });
 
@@ -83,34 +83,38 @@ async function retrievePopularVideos() {
     );
     return youtubeVideoIds;
   });
-  console.log("hiiiii");
-  const addAllMusicdataToDB = await db.query(
-    "INSERT INTO webdata (test) VALUES($1)",
-    [getMusicVideoYouTubeIds]
-  );
 
   await browser.close();
   return getMusicVideoYouTubeIds;
 }
 
-// async function sendScrapedDataToDatabase() {
-//   const popularTopicsDataFromScraper = await retrievePopularTopics();
-//   const popularSongsDataFromScraper = await retrievePopularSongs();
-//   const popularVideosFromScraper = await retrievePopularVideos();
-//   const popularAlbumsFromScraper = await retrievePopularAlbums();
-//   console.log("bottom");
+async function sendScrapedDataToDatabase() {
+  const popularTopicsDataFromScraper = await retrievePopularTopics();
+  const popularSongsDataFromScraper = await retrievePopularSongs();
+  const popularVideosFromScraper = await retrievePopularVideos();
+  const popularAlbumsFromScraper = await retrievePopularAlbums();
 
-//   const addAllMusicdataToDB = await db.query(
-//     "INSERT INTO scrapeddata(popularTopics, popularSongsData, popularVideosData, popularAlbumData) VALUEs($1, $2, $3, $4)",
-//     [popularTopics, popularSongsData, popularVideosData, popularAlbumData]
-//   );
-//   // const scrapedData = [
-//   //   {
-//   //     popularTopics: [...popularTopicsDataFromScraper],
-//   //     popularSongsData: [...popularSongsDataFromScraper],
-//   //     popularVideosData: [...popularVideosFromScraper],
-//   //     popularAlbumData: [...popularAlbumsFromScraper],
-//   //   },
-//   // ];
-//   // console.log(scrapedData[0].popularVideosData);
-// }
+  const addAllMusicdataToDB = await db.query(
+    "INSERT INTO scrapeddata(popularTopics, popularSongsData, popularVideosData, popularAlbumData) VALUES($1, $2, $3, $4)",
+    [
+      popularTopicsDataFromScraper,
+      popularSongsDataFromScraper,
+      popularVideosFromScraper,
+      popularAlbumsFromScraper,
+    ]
+  );
+
+  // const addAllMusicdataToDB = await db.query(
+  //   "INSERT INTO scrapeddata(popularTopics, popularSongsData, popularVideosData, popularAlbumData) VALUES($1, $2, $3, $4)",
+  //   [populartopics, popularsongsdata, popularVideosData, popularAlbumData]
+  // );
+  // const scrapedData = [
+  //   {
+  //     popularTopics: [...popularTopicsDataFromScraper],
+  //     popularSongsData: [...popularSongsDataFromScraper],
+  //     popularVideosData: [...popularVideosFromScraper],
+  //     popularAlbumData: [...popularAlbumsFromScraper],
+  //   },
+  // ];
+  // console.log(scrapedData[0].popularVideosData);
+}
