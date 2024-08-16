@@ -73,19 +73,23 @@ app.post("/location", async (req, res) => {
 });
 
 app.use(async (req, res) => {
-  const popularTopicsDataFromScraper = await retrievePopularTopics();
-  const popularSongsDataFromScraper = await retrievePopularSongs();
-  const popularVideosFromScraper = await retrievePopularVideos();
-  const popularAlbumsFromScraper = await retrievePopularAlbums();
-  const scrapedData = [
+  const addAllMusicdataToDB = await db.query(
+    "select * from scrapeddata order by id desc limit 1"
+  );
+
+  // const test = addAllMusicdataToDB.rows[0];
+  // const example = [...test.popularvideosdata];
+  // // const ex = [typeof addAllMusicdataToDB.rows[0].popularalsongsdata];
+  // console.log(example[0]);
+
+  const scrapedData = await [
     {
-      popularTopics: [...popularTopicsDataFromScraper],
-      popularSongsData: [...popularSongsDataFromScraper],
-      popularVideosData: [...popularVideosFromScraper],
-      popularAlbumData: [...popularAlbumsFromScraper],
+      popularTopics: [...addAllMusicdataToDB.rows[0].populartopics],
+      popularSongsData: [...addAllMusicdataToDB.rows[0].popularsongsdata],
+      popularVideosData: [...addAllMusicdataToDB.rows[0].popularvideosdata],
+      popularAlbumData: [...addAllMusicdataToDB.rows[0].popularalbumdata],
     },
   ];
-  // console.log(scrapedData[0].popularVideosData);
   res.send(scrapedData);
 });
 

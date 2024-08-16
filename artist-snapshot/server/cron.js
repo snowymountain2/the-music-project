@@ -6,7 +6,6 @@ import StealthPlugin from "puppeteer-extra-plugin-stealth";
 
 const task = cron.schedule("40 * * * * *", async () => {
   await sendScrapedDataToDatabase();
-  console.log("uploaded");
 });
 
 task.start();
@@ -103,18 +102,4 @@ async function sendScrapedDataToDatabase() {
       popularAlbumsFromScraper,
     ]
   );
-
-  // const addAllMusicdataToDB = await db.query(
-  //   "INSERT INTO scrapeddata(popularTopics, popularSongsData, popularVideosData, popularAlbumData) VALUES($1, $2, $3, $4)",
-  //   [populartopics, popularsongsdata, popularVideosData, popularAlbumData]
-  // );
-  // const scrapedData = [
-  //   {
-  //     popularTopics: [...popularTopicsDataFromScraper],
-  //     popularSongsData: [...popularSongsDataFromScraper],
-  //     popularVideosData: [...popularVideosFromScraper],
-  //     popularAlbumData: [...popularAlbumsFromScraper],
-  //   },
-  // ];
-  // console.log(scrapedData[0].popularVideosData);
 }
