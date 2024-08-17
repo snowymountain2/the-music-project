@@ -21,15 +21,27 @@ export interface locationScrapedDataType {
 export function HomepageSection() {
   const [popularTopics, setPopularTopics] = useState<
     nonLocationScrapedDataType[]
-  >([{}]);
+  >([
+    {
+      popularTopics: [],
+      popularSongsData: [],
+      popularVideosData: [],
+      popularAlbumData: [],
+    },
+  ]);
   const [concertData, setConcertData] = useState<locationScrapedDataType[]>([
-    {},
+    {
+      concertImageURLs: [],
+      concertDate: [],
+      ConcertName: [],
+      ConcertLocation: [],
+    },
   ]);
 
   useEffect(() => {
     async function getData() {
       const response = await fetch("http://localhost:8080/example");
-      const formattedData: scrapedDataType[] = await response.json();
+      const formattedData = await response.json();
       setPopularTopics(formattedData);
     }
 
@@ -40,10 +52,7 @@ export function HomepageSection() {
     <>
       <div className="header">
         <div className="logo">Today in Music</div>
-        <LocationModal
-          concertData={concertData}
-          setConcertData={setConcertData}
-        />
+        <LocationModal setConcertData={setConcertData} />
       </div>
       <div className="main-container">
         <div className="grid-container">

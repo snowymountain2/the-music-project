@@ -1,7 +1,6 @@
 import { ConcertItem } from "./ConcertItem";
-import { locationScrapedDataType } from "./HomepageSection";
 
-export function ConcertList({ concertData }: locationScrapedDataType[]) {
+export function ConcertList({ concertData }) {
   return (
     <>
       {concertData.concertImageURLs === undefined
