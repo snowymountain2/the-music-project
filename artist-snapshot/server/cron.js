@@ -1,7 +1,6 @@
 import cron from "node-cron";
 import * as db from "./db.js";
 import puppeteer from "puppeteer-extra";
-import cors from "cors";
 import StealthPlugin from "puppeteer-extra-plugin-stealth";
 
 const task = cron.schedule("40 * * * * *", async () => {

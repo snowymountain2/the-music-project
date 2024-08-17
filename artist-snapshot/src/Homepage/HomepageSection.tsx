@@ -1,4 +1,3 @@
-import React from "react";
 import { useEffect, useState } from "react";
 import { TopVideos } from "./TopVideos";
 import { TopAlbums } from "./TopAlbums";

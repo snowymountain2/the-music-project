@@ -1,19 +1,6 @@
-import React from "react";
 import YouTube from "react-youtube";
-import { scrapedDataType } from "./HomepageSection";
 
-// export interface scrapedDataType {
-//   popularTopics: string[];
-//   popularSongsData: string[];
-//   popularVideosData: string[];
-//   popularAlbumData: string[];
-// }
-
-export function TopVideos({
-  YouTubeVideoIDs,
-}: {
-  YouTubeVideoIDs: scrapedDataType[];
-}) {
+export function TopVideos({ YouTubeVideoIDs }) {
   const opts = {
     height: "168",
     width: "300",

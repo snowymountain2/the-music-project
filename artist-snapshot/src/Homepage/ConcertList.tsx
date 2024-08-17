@@ -1,9 +1,7 @@
-import React from "react";
 import { ConcertItem } from "./ConcertItem";
 import { locationScrapedDataType } from "./HomepageSection";
 
 export function ConcertList({ concertData }: locationScrapedDataType[]) {
-  //   console.log("teeeest", concertData.concertImageURLs);
   return (
     <>
       {concertData.concertImageURLs === undefined
