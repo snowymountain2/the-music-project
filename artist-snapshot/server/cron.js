@@ -2,6 +2,9 @@ import cron from "node-cron";
 import * as db from "./db.js";
 import puppeteer from "puppeteer-extra";
 import StealthPlugin from "puppeteer-extra-plugin-stealth";
+import "dotenv/config";
+
+console.log(process.env.USER);
 
 const task = cron.schedule("40 * * * * *", async () => {
   await sendScrapedDataToDatabase();

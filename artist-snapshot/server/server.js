@@ -93,4 +93,6 @@ app.use(async (req, res) => {
   res.send(scrapedData);
 });
 
+console.log("hi");
+
 app.listen(8080);
